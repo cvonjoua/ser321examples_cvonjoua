@@ -59,9 +59,9 @@ public class Fraction {
                  System.exit(1);
              }
          } else {
-             System.out.println("Did not catch.");
-             //argX = 1;
-             //argY = 2;
+             //System.out.println("Did not catch.");
+             argX = 1;
+             argY = 3;
          }
          
          frac.setNumerator(argX);
