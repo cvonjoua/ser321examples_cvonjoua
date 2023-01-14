@@ -50,7 +50,7 @@ public class Fraction {
          int argX = 0; 
          int argY = 0;
          
-         if (args.length ==2) {
+         if (args.length == 2) {
              try {
                  argX = Integer.parseInt(args[0]);
                  argY = Integer.parseInt(args[1]);
@@ -59,8 +59,9 @@ public class Fraction {
                  System.exit(1);
              }
          } else {
-             argX = 1;
-             argY = 2;
+             System.out.println("Did not catch.");
+             //argX = 1;
+             //argY = 2;
          }
          
          frac.setNumerator(argX);
