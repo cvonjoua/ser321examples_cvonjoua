@@ -51,7 +51,7 @@ task runFraction(type: JavaExec) {
   main = 'Fraction'
 }
 
-task runFractionAgain(type:  JavaExec) {
+task runFrac(type:  JavaExec) {
 	group 'Fraction Tasks'
 	description 'Tasks which runs Fraction with default parameters or given values'
 	
