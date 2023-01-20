@@ -201,10 +201,12 @@ class WebServer {
           // extract path parameters
           query_pairs = splitQuery(request.replace("multiply?", ""));
 
+       
           // extract required fields from parameters
+          try {
           Integer num1 = Integer.parseInt(query_pairs.get("num1"));
           Integer num2 = Integer.parseInt(query_pairs.get("num2"));
-
+          
           // do math
           Integer result = num1 * num2;
 
@@ -213,6 +215,17 @@ class WebServer {
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
           builder.append("Result is: " + result);
+          } catch (NumberFormatException e) {
+              builder.append("HTTP/1.1 422 OK\n ");
+              builder.append("Content-Type: application/JSON; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("{\"Error\": \"Non number value detected.  Please correct input.\"}");
+          } catch (Exception e) {
+              builder.append("HTTP/1.1 500 OK\n ");
+              builder.append("Content-Type: application/JSON; charset=utf-8\n");
+              builder.append("\n");
+              builder.append("{\"Error\": \"Error, please try input again.\"}");
+          }
 
           // TODO: Include error handling here with a correct error code and
           // a response that makes sense
