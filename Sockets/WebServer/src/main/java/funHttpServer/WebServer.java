@@ -22,6 +22,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.nio.charset.Charset;
@@ -203,8 +207,10 @@ class WebServer {
 
        
           // extract required fields from parameters
+          String variableName = "num1";
           try {
           Integer num1 = Integer.parseInt(query_pairs.get("num1"));
+          variableName = "num2";
           Integer num2 = Integer.parseInt(query_pairs.get("num2"));
           
           // do math
@@ -219,7 +225,7 @@ class WebServer {
               builder.append("HTTP/1.1 422 OK\n ");
               builder.append("Content-Type: application/JSON; charset=utf-8\n");
               builder.append("\n");
-              builder.append("{\"Error\": \"Non number value detected.  Please correct input.\"}");
+              builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
           } catch (Exception e) {
               builder.append("HTTP/1.1 500 OK\n ");
               builder.append("Content-Type: application/JSON; charset=utf-8\n");
@@ -247,9 +253,27 @@ class WebServer {
           builder.append("HTTP/1.1 200 OK\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
-          builder.append("Check the todos mentioned in the Java source file");
+          builder.append("Check the todos mentioned in the Java source file <br/>");
           // TODO: Parse the JSON returned by your fetch and create an appropriate
           // response based on what the assignment document asks for
+          
+          JSONArray repoArray = new JSONArray(json);
+          
+          for (int i = 0; i < repoArray.length(); i++) {
+              JSONObject repo = repoArray.getJSONObject(i);
+              
+              String repoName = repo.getString("sha");
+              String repoId = repo.getString("node_id");
+              
+              JSONObject commit = repo.getJSONObject("commit");
+              JSONObject author = repo.getJSONObject("author");
+              String authorName = author.getString("name");
+              
+              builder.append("Repo:  " + repoName + "<br/>");
+              builder.append("ID:  " + repoId + "<br/>");
+              builder.append("Owner:  " + authorName + "<br/>");
+              builder.append("<hr/>");
+          }
 
         } else {
           // if the request is not recognized at all
