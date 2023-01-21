@@ -4,10 +4,6 @@ apply plugin: 'application'
 //define main class
 mainClassName = 'SimpleServer'
 
-repositories {
-	mavencentral()
-}
-
 dependencies {
 	implementation 'org.json:json:20171018'
 }
