@@ -4,8 +4,12 @@ apply plugin: 'application'
 //define main class
 mainClassName = 'SimpleServer'
 
+repositories {
+	mavencentral()
+}
+
 dependencies {
-	implementation group: 'org.json', name: 'json', version: '20200518'
+	implementation 'org.json:json:20220924
 }
 
 task SimpleWebServer(type: JavaExec) {
@@ -21,14 +25,6 @@ task SimpleWebServer(type: JavaExec) {
 task FunWebServer(type: JavaExec) {
   group 'http'
   description 'Simple Http Demo'
-  
-  repositories {
-  	mavencentral()
-  }
-  
-  dependenceies {
-  	implementation 'org.json:json:20220924'
-  }
 
   classpath = sourceSets.main.runtimeClasspath
 
