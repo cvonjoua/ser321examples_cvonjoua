@@ -264,11 +264,10 @@ class WebServer {
               JSONObject repo = repoArray.getJSONObject(i);
               
               String repoName = repo.getString("name");
-              String repoId = repo.getString("node_id");
+              String repoId = repo.getString("id");
               
-              JSONObject commit = repo.getJSONObject("commit");
-              JSONObject author = repo.getJSONObject("author");
-              String authorName = author.getString("name");
+              JSONObject ownerRepo = repo.getJSONObject("owner");
+              String authorName = ownerRepo.getString("login");
               
               builder.append("Repo:  " + repoName + "<br/>");
               builder.append("ID:  " + repoId + "<br/>");
