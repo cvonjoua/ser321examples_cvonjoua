@@ -5,7 +5,7 @@ apply plugin: 'application'
 mainClassName = 'SimpleServer'
 
 dependencies {
-	implementation 'org.json:json:20171018'
+	implementation 'org.json:json:20220924'
 }
 
 task SimpleWebServer(type: JavaExec) {
