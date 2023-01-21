@@ -258,8 +258,9 @@ class WebServer {
           // response based on what the assignment document asks for
           
           JSONArray repoArray = new JSONArray(json);
+          JSONArray newArray = new JSONArray();
           
-          for (int i = 0; i < repoArray.length(); i++) {
+          /*for (int i = 0; i < repoArray.length(); i++) {
               JSONObject repo = repoArray.getJSONObject(i);
               
               String repoName = repo.getString("sha");
@@ -273,7 +274,21 @@ class WebServer {
               builder.append("ID:  " + repoId + "<br/>");
               builder.append("Owner:  " + authorName + "<br/>");
               builder.append("<hr/>");
-          }
+          }*/
+          
+          for (int i = 0; i < repoArray.length(); i++) {
+              JSONObject repo = repoArray.getJSONObject(i);
+              String repoName = repo.getString("name");
+              Integer repoID = repo.getInt("id");
+              String repoOwnerName;
+              JSONObject ownerRepo = repo.getJSONObject("owner");
+              repoOwnerName = ownerRepo.getString("login");
+
+              builder.append("Repo: " + repoName + "\n");
+              builder.append("id: " + repoID + "\n"); 
+              builder.append("owner: " + repoOwnerName + "\n");
+              builder.append("\n");
+            }
 
         } else {
           // if the request is not recognized at all
