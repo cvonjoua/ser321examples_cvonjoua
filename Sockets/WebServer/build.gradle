@@ -21,6 +21,14 @@ task SimpleWebServer(type: JavaExec) {
 task FunWebServer(type: JavaExec) {
   group 'http'
   description 'Simple Http Demo'
+  
+  repositories {
+  	mavencentral()
+  }
+  
+  dependenceies {
+  	implementation 'org.json:json:20220924'
+  }
 
   classpath = sourceSets.main.runtimeClasspath
 
@@ -28,14 +36,5 @@ task FunWebServer(type: JavaExec) {
   standardInput = System.in
 }
 
-task JsonParser(type:  JavaExec) {
-	group 'http'
-	description 'JsonParser'
-	
-	classpath = sourceSets.main.runtimeClasspath
-	
-	main = 'funHttpServer.json.JsonParser'
-	standardInput = System.in
-}
 
 
