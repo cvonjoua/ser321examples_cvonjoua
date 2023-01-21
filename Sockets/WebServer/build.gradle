@@ -5,7 +5,7 @@ apply plugin: 'application'
 mainClassName = 'SimpleServer'
 
 dependencies {
-	implementation 'org.json:json:20220924'
+	implementation group: 'org.json', name: 'json', version: '20200518'
 }
 
 task SimpleWebServer(type: JavaExec) {
@@ -26,6 +26,16 @@ task FunWebServer(type: JavaExec) {
 
   main = 'funHttpServer.WebServer'
   standardInput = System.in
+}
+
+task JsonParser(type:  JavaExec) {
+	group 'http'
+	description 'JsonParser'
+	
+	classpath = sourceSets.main.runtimeClasspath
+	
+	main = 'funHttpServer.json.JsonParser'
+	standardInput = System.in
 }
 
 
