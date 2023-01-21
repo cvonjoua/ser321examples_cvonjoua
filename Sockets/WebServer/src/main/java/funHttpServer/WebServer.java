@@ -264,7 +264,7 @@ class WebServer {
               JSONObject repo = repoArray.getJSONObject(i);
               
               String repoName = repo.getString("name");
-              String repoId = repo.getString("id");
+              Integer repoId = repo.getInt("id");
               
               JSONObject ownerRepo = repo.getJSONObject("owner");
               String authorName = ownerRepo.getString("login");
