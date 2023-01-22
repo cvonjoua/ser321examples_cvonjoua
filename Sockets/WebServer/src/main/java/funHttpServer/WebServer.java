@@ -368,7 +368,7 @@ class WebServer {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Not enough inputs.  Please specify 2 inputs:  num1<>&num2<>");
+                builder.append("Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
             }
         } else {
           // if the request is not recognized at all
