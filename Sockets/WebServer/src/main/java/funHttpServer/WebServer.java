@@ -336,6 +336,13 @@ class WebServer {
                     Float num1 = Float.parseFloat(queryPairs.get("num1"));
                     variableName = "num2";
                     Float num2 = Float.parseFloat(queryPairs.get("num2"));
+                    
+                    if (num1 != Float.parseFloat(queryPairs.get("num1"))|| num2 != Float.parseFloat(queryPairs.get("num2"))) {
+                        builder.append("HTTP/1.1 422 Bad Request\n ");
+                        builder.append("Content-Type: text/html; charset=utf-8\n");
+                        builder.append("\n");
+                        builder.append("Number Format Exception - Line 343 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
+                    }
     
                     // do math
                     Float numResult = (num1 + num2) / 2;
@@ -372,12 +379,6 @@ class WebServer {
                     builder.append("Number Format Exception - Line 372 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
                     //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
-            } catch (NumberFormatException e2) {
-                builder.append("HTTP/1.1 422 Bad Request\n ");
-                builder.append("Content-Type: text/html; charset=utf-8\n");
-                builder.append("\n");
-                builder.append("Number Format Exception - Line 379 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
-               // builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
