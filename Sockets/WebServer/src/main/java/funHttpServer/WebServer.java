@@ -324,9 +324,8 @@ class WebServer {
             queryPairs = splitQuery(request.replace("gradecheck?", ""));
 
             // extract required fields from parameters
-            
-            try {
             String variableName = "num1";
+            try {
             Float num1 = Float.parseFloat(queryPairs.get("num1"));
             variableName = "num2";
             Float num2 = Float.parseFloat(queryPairs.get("num2"));
@@ -354,8 +353,11 @@ class WebServer {
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");
             builder.append("Your received a grade of " + numResult + " which is a " + grade + "\n");
-            } catch (Exception e) {
-                
+            } catch (NumberFormatException e) {
+                builder.append("HTTP/1.1 422 Bad Request\n ");
+                builder.append("Content-Type: application/JSON; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
             }
         } else {
           // if the request is not recognized at all
