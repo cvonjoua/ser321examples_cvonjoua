@@ -223,12 +223,12 @@ class WebServer {
           builder.append("Result is: " + result);
           } catch (NumberFormatException e) {
               builder.append("HTTP/1.1 422 Bad Request\n ");
-              builder.append("Content-Type: application/JSON; charset=utf-8\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
           } catch (Exception e) {
               builder.append("HTTP/1.1 500 OK\n ");
-              builder.append("Content-Type: application/JSON; charset=utf-8\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("{\"Error\": \"Error, please try input again.\"}");
           }
