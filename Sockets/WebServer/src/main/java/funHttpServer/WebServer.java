@@ -294,6 +294,13 @@ class WebServer {
                             count++;
                     }
                     
+                    if (count == 0) {
+                        builder.append("HTTP/1.1 400 Bad Request\n");
+                        builder.append("Content-type: text/html; charset=utf-8\n");
+                        builder.append("\n");
+                        builder.append("You have not entered any valid strings.  Please try again. ");
+                    }
+                    
                     //add strings together and print results
                     builder.append("HTTP/1.1 200 OK\n");
                     builder.append("Content-type: text/html; charset=utf-8\n");
