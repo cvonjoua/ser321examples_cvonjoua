@@ -345,7 +345,7 @@ class WebServer {
             } else if (60 <= numResult && numResult <70) {
                 grade = "D, but you probably failed if your in Software Engineering....";
             } else {
-                grade = "You know what this means.....";
+                grade = ".....You know what this means.....";
             }
 
             // Generate response
@@ -355,7 +355,7 @@ class WebServer {
             builder.append("Your received a grade of " + numResult + " which is a " + grade + "\n");
             } catch (NumberFormatException e) {
                 builder.append("HTTP/1.1 422 Bad Request\n ");
-                builder.append("Content-Type: application/JSON; charset=utf-8\n");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
                 builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
             }
