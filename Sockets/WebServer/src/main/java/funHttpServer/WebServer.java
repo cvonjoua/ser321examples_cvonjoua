@@ -284,13 +284,19 @@ class WebServer {
                 queryPair = splitQuery(request.replace("charcount?", ""));
                 
                 if (queryPair.containsKey("str1") & queryPair.containsKey("str2")) {
+                    int count = 0;
                     String str1 = queryPair.get("str1");
                     String str2 = queryPair.get("str2");
                     
-                    int stringLength1 = str1.length();
-                    int stringLength2 = str2.length();
-                    int totalLength = stringLength1 + stringLength2;
+                    //int stringLength1 = str1.length();
+                    //int stringLength2 = str2.length();
+                    //int totalLength = stringLength1 + stringLength2;
+                    String totalString = str1 + str2;
                     
+                    for (int i = 0; i < totalString.length(); i++) {
+                        if(totalString.charAt(i) != ' ')
+                            count++;
+                    }
                     
                     //add strings together and print results
                     builder.append("HTTP/1.1 200 OK\n");
@@ -298,7 +304,7 @@ class WebServer {
                     builder.append("\n");
                     
                     //TODO print out results
-                    builder.append(str1 + " " + str2 + " has " + totalLength + " characters\n");
+                    builder.append(str1 + " " + str2 + " has " + count + " characters\n");
                 }
             } catch (Exception e) {
                 
