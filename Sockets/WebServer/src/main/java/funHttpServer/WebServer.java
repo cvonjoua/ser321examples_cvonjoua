@@ -287,10 +287,6 @@ class WebServer {
                     int count = 0;
                     String str1 = queryPair.get("str1");
                     String str2 = queryPair.get("str2");
-                    
-                    //int stringLength1 = str1.length();
-                    //int stringLength2 = str2.length();
-                    //int totalLength = stringLength1 + stringLength2;
                     String totalString = str1 + str2;
                     
                     for (int i = 0; i < totalString.length(); i++) {
@@ -305,6 +301,13 @@ class WebServer {
                     
                     //TODO print out results
                     builder.append(str1 + " " + str2 + " has " + count + " characters\n");
+                } else {
+                    builder.append("HTTP/1.1 400 Bad Request\n");
+                    builder.append("Content-Type: text/html; charset=utf-8\n");
+                    builder.append("\n");
+                    builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
+                    builder.append("\n");
+                    builder.append("Example: bldstr?str1=hello&str2=world");
                 }
             } catch (Exception e) {
                 
