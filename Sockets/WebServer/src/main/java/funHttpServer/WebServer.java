@@ -319,12 +319,14 @@ class WebServer {
             }
             
         } else if (request.contains("gradecheck")) {
+            String variableName = null;
             try {
                 Map<String, String> queryPairs = new LinkedHashMap<String, String>();
                 queryPairs = splitQuery(request.replace("gradecheck?", ""));
     
                 // extract required fields from parameters
-                String variableName = "num1";
+                variableName = "num1";
+                
                 try {
                 Float num1 = Float.parseFloat(queryPairs.get("num1"));
                 variableName = "num2";
@@ -364,6 +366,11 @@ class WebServer {
                     builder.append("\n");
                     builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
+            } catch (NumberFormatException e) {
+                builder.append("HTTP/1.1 422 Bad Request\n ");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
