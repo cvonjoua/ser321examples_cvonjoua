@@ -334,11 +334,8 @@ class WebServer {
                 try {
                     variableName = "num1";
                     Float num1 = Float.parseFloat(queryPairs.get("num1"));
-                    if (num1 )
                     variableName = "num2";
                     Float num2 = Float.parseFloat(queryPairs.get("num2"));
-                    
-                    if ()
     
                     // do math
                     Float numResult = (num1 + num2) / 2;
