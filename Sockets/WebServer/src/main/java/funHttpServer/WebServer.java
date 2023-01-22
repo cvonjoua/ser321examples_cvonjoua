@@ -334,7 +334,9 @@ class WebServer {
             Float numResult = (num1 + num2) / 2;
             String grade = null;
             
-            if (numResult > 100) {
+            if (numResult > 1000) {
+              grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
+            } else if(1000 <= numResult && numResult > 100) {
                 grade = "A+ - Congrats, your smart!";
             } else if (numResult > 89.9) {
                 grade = "A";
