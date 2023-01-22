@@ -332,47 +332,50 @@ class WebServer {
                 // extract required fields from parameters
                 
                 try {
-                variableName = "num1";
-                Float num1 = Float.parseFloat(queryPairs.get("num1"));
-                variableName = "num2";
-                Float num2 = Float.parseFloat(queryPairs.get("num2"));
-
-                // do math
-                Float numResult = (num1 + num2) / 2;
-                String grade = null;
-                
-                if (numResult > 1000) {
-                  grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
-                } else if(1000 <= numResult && numResult > 100) {
-                    grade = "A+ - Congrats, your smart!";
-                } else if (numResult > 89.9) {
-                    grade = "A";
-                } else if (80 <= numResult && numResult <= 90) {
-                    grade = "B";
-                } else if (70 <= numResult && numResult < 80) {
-                    grade = "C";
-                } else if (60 <= numResult && numResult <70) {
-                    grade = "D, but you probably failed if your in Software Engineering....";
-                } else if (0 <= numResult && numResult < 60){
-                    grade = ".....You know what this means.....";
-                } else {
-                    grade = " - Wait....Really?  A negative grade?  What you have to do to get this fantastic achievement?  "
-                            + "Or you just tyring to break my code.  Enter in a real grade.....";
-                }
+                    variableName = "num1";
+                    Float num1 = Float.parseFloat(queryPairs.get("num1"));
+                    if (num1 )
+                    variableName = "num2";
+                    Float num2 = Float.parseFloat(queryPairs.get("num2"));
+                    
+                    if ()
     
-                // Generate response
-                builder.append("HTTP/1.1 200 OK\n");
-                builder.append("Content-Type: text/html; charset=utf-8\n");
-                builder.append("\n");
-                builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
-                } catch (NumberFormatException e) {
+                    // do math
+                    Float numResult = (num1 + num2) / 2;
+                    String grade = null;
+                    
+                    if (numResult > 1000) {
+                      grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
+                    } else if(1000 <= numResult && numResult > 100) {
+                        grade = "A+ - Congrats, your smart!";
+                    } else if (numResult > 89.9) {
+                        grade = "A";
+                    } else if (80 <= numResult && numResult <= 90) {
+                        grade = "B";
+                    } else if (70 <= numResult && numResult < 80) {
+                        grade = "C";
+                    } else if (60 <= numResult && numResult <70) {
+                        grade = "D, but you probably failed if your in Software Engineering....";
+                    } else if (0 <= numResult && numResult < 60){
+                        grade = ".....You know what this means.....";
+                    } else {
+                        grade = " - Wait....Really?  A negative grade?  What you have to do to get this fantastic achievement?  "
+                                + "Or you just tyring to break my code.  Enter in a real grade.....";
+                    }
+        
+                    // Generate response
+                    builder.append("HTTP/1.1 200 OK\n");
+                    builder.append("Content-Type: text/html; charset=utf-8\n");
+                    builder.append("\n");
+                    builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
+                } catch (NumberFormatException e1) {
                     builder.append("HTTP/1.1 422 Bad Request\n ");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("Number Format Exception - Line 372 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
                     //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e2) {
                 builder.append("HTTP/1.1 422 Bad Request\n ");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
