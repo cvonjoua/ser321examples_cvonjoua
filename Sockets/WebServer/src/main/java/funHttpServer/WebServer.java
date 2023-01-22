@@ -319,50 +319,56 @@ class WebServer {
             }
             
         } else if (request.contains("gradecheck")) {
-            
-            Map<String, String> queryPairs = new LinkedHashMap<String, String>();
-            queryPairs = splitQuery(request.replace("gradecheck?", ""));
-
-            // extract required fields from parameters
-            String variableName = "num1";
             try {
-            Float num1 = Float.parseFloat(queryPairs.get("num1"));
-            variableName = "num2";
-            Float num2 = Float.parseFloat(queryPairs.get("num2"));
-            
-            // do math
-            Float numResult = (num1 + num2) / 2;
-            String grade = null;
-            
-            if (numResult > 1000) {
-              grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
-            } else if(1000 <= numResult && numResult > 100) {
-                grade = "A+ - Congrats, your smart!";
-            } else if (numResult > 89.9) {
-                grade = "A";
-            } else if (80 <= numResult && numResult <= 90) {
-                grade = "B";
-            } else if (70 <= numResult && numResult < 80) {
-                grade = "C";
-            } else if (60 <= numResult && numResult <70) {
-                grade = "D, but you probably failed if your in Software Engineering....";
-            } else if (0 <= numResult && numResult < 60){
-                grade = ".....You know what this means.....";
-            } else {
-                grade = " - Wait....Really?  A negative grade?  What you have to do to get this fantastic achievement?  "
-                        + "Or you just tyring to break my code.  Enter in a real grade.....";
-            }
-
-            // Generate response
-            builder.append("HTTP/1.1 200 OK\n");
-            builder.append("Content-Type: text/html; charset=utf-8\n");
-            builder.append("\n");
-            builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
-            } catch (NumberFormatException e) {
-                builder.append("HTTP/1.1 422 Bad Request\n ");
+                Map<String, String> queryPairs = new LinkedHashMap<String, String>();
+                queryPairs = splitQuery(request.replace("gradecheck?", ""));
+    
+                // extract required fields from parameters
+                String variableName = "num1";
+                try {
+                Float num1 = Float.parseFloat(queryPairs.get("num1"));
+                variableName = "num2";
+                Float num2 = Float.parseFloat(queryPairs.get("num2"));
+                
+                // do math
+                Float numResult = (num1 + num2) / 2;
+                String grade = null;
+                
+                if (numResult > 1000) {
+                  grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
+                } else if(1000 <= numResult && numResult > 100) {
+                    grade = "A+ - Congrats, your smart!";
+                } else if (numResult > 89.9) {
+                    grade = "A";
+                } else if (80 <= numResult && numResult <= 90) {
+                    grade = "B";
+                } else if (70 <= numResult && numResult < 80) {
+                    grade = "C";
+                } else if (60 <= numResult && numResult <70) {
+                    grade = "D, but you probably failed if your in Software Engineering....";
+                } else if (0 <= numResult && numResult < 60){
+                    grade = ".....You know what this means.....";
+                } else {
+                    grade = " - Wait....Really?  A negative grade?  What you have to do to get this fantastic achievement?  "
+                            + "Or you just tyring to break my code.  Enter in a real grade.....";
+                }
+    
+                // Generate response
+                builder.append("HTTP/1.1 200 OK\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
+                builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
+                } catch (NumberFormatException e) {
+                    builder.append("HTTP/1.1 422 Bad Request\n ");
+                    builder.append("Content-Type: text/html; charset=utf-8\n");
+                    builder.append("\n");
+                    builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
+                }
+            } catch (Exception e) {
+                builder.append("HTTP/1.1 400 Bad Request\n");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("Not enough inputs.  Please specify 2 inputs:  num1<>&num2<>");
             }
         } else {
           // if the request is not recognized at all
