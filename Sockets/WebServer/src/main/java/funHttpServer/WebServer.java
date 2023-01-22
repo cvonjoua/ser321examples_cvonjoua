@@ -344,8 +344,11 @@ class WebServer {
                 grade = "C";
             } else if (60 <= numResult && numResult <70) {
                 grade = "D, but you probably failed if your in Software Engineering....";
-            } else {
+            } else if (0 <= numResult && numResult < 60){
                 grade = ".....You know what this means.....";
+            } else {
+                grade = "Really?  A negative grade?  What you have to do to get this fantastic achievement?  "
+                        + "Or you just tyring to break my code.  Enter in a real grade.....";
             }
 
             // Generate response
