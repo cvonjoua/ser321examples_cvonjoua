@@ -352,7 +352,7 @@ class WebServer {
             builder.append("HTTP/1.1 200 OK\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");
-            builder.append("Your received a grade of " + numResult + " which is a " + grade + "\n");
+            builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
             } catch (NumberFormatException e) {
                 builder.append("HTTP/1.1 422 Bad Request\n ");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
