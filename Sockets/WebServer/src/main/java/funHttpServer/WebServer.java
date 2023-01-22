@@ -222,7 +222,7 @@ class WebServer {
           builder.append("\n");
           builder.append("Result is: " + result);
           } catch (NumberFormatException e) {
-              builder.append("HTTP/1.1 422 OK\n ");
+              builder.append("HTTP/1.1 422 Bad Request\n ");
               builder.append("Content-Type: application/JSON; charset=utf-8\n");
               builder.append("\n");
               builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
@@ -269,34 +269,48 @@ class WebServer {
               JSONObject ownerRepo = repo.getJSONObject("owner");
               String authorName = ownerRepo.getString("login");
               
+              builder.append("HTTP/1.1 200 OK\n");
               builder.append("Repo:  " + repoName + "<br/>");
               builder.append("ID:  " + repoId + "<br/>");
               builder.append("Owner:  " + authorName + "<br/>");
               builder.append("<hr/>");
           }
           
-          //This code works, not sure why.....
-          /*for (int i = 0; i < repoArray.length(); i++) {
-              JSONObject repo = repoArray.getJSONObject(i);
-              String repoName = repo.getString("name");
-              Integer repoID = repo.getInt("id");
-              String repoOwnerName;
-              JSONObject ownerRepo = repo.getJSONObject("owner");
-              repoOwnerName = ownerRepo.getString("login");
-
-              builder.append("Repo: " + repoName + "\n");
-              builder.append("id: " + repoID + "\n"); 
-              builder.append("owner: " + repoOwnerName + "\n");
-              builder.append("\n");
-            }*/
-
+        } else if (request.contains("charcount")) {
+            
+            Map<String, String> queryPair = new LinkedHashMap<String, String>();
+            
+            try {
+                queryPair = splitQuery(request.replace("charcount?", ""));
+                
+                if (queryPair.containsKey("str1") & queryPair.containsKey("str2")) {
+                    String str1 = queryPair.get("str1");
+                    String str2 = queryPair.get("str2");
+                    
+                    int stringLength1 = str1.length();
+                    int stringLength2 = str2.length();
+                    int totalLength = stringLength1 + stringLength2;
+                    
+                    
+                    //add strings together and print results
+                    builder.append("HTTP/1.1 200 OK\n");
+                    builder.append("Content-type: text/html; charset=utf-8\n");
+                    builder.append("\n");
+                    
+                    //TODO print out results
+                    builder.append(str1 + " " + str2 + " has " + totalLength + " characters\n");
+                }
+            } catch (Exception e) {
+                
+            }
+            
         } else {
           // if the request is not recognized at all
 
           builder.append("HTTP/1.1 400 Bad Request\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
-          builder.append("I am not sure what you want me to do...");
+          builder.append("Improper request made.  Please verify your request and try again.");
         }
 
         // Output
