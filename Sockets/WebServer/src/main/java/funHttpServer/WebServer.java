@@ -375,7 +375,7 @@ class WebServer {
                     builder.append("\n");
                     builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
                     
-                    String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"url\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
+                    String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"LeonardoCongrats.gif\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
                     builder.append(iframe);
                     //builder.append();
                     
