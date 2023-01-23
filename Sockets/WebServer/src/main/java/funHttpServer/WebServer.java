@@ -330,7 +330,7 @@ class WebServer {
                 builder.append("Example: /charcount?str1=hello&str2=world");
             }
             
-        } else if (request.contains("gradecheck")) {
+        } else if (request.contains("gradecheck")) { //contains is looking for that specific combination of characters.  
             String variableName = null;
             try {
                 Map<String, String> queryPairs = new LinkedHashMap<String, String>();
@@ -386,7 +386,7 @@ class WebServer {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("did i get caught?");
+                builder.append("Improper number of grades entered.  Please enter 2 grades.  EXAMPLE:  host:PORT/gradecheck?grade1=<...>&grade2=<...>");
             }
         } else {
           // if the request is not recognized at all
