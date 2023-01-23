@@ -244,14 +244,15 @@ class WebServer {
           //     then drill down to what you care about
           // "Owner's repo is named RepoName. Example: find RepoName's contributors" translates to
           //     "/repos/OWNERNAME/REPONAME/contributors"
+            
+            Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           
+            try {
+              query_pairs = splitQuery(request.replace("github?", ""));
+              String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
+              System.out.println(json);
 
-          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-          query_pairs = splitQuery(request.replace("github?", ""));
-          String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
-          System.out.println(json);
-
-          try {
+          
               //builder.append("HTTP/1.1 200 OK\n");
               //builder.append("Content-Type: text/html; charset=utf-8\n");
               //builder.append("\n");
