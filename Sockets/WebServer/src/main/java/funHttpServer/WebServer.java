@@ -197,7 +197,7 @@ class WebServer {
             builder.append("\n");
             builder.append("File not found: " + file);
           }
-        } else if (request.contains("multiply?")) {
+        } else if (request.equalsIgnoreCase("multiply?")) {
           // This multiplies two numbers, there is NO error handling, so when
           // wrong data is given this just crashes
 
@@ -236,7 +236,7 @@ class WebServer {
           // TODO: Include error handling here with a correct error code and
           // a response that makes sense
 
-        } else if (request.contains("github?")) {
+        } else if (request.equalsIgnoreCase("github?")) {
           // pulls the query from the request and runs it with GitHub's REST API
           // check out https://docs.github.com/rest/reference/
           //
@@ -276,7 +276,7 @@ class WebServer {
               builder.append("<hr/>");
           }
           
-        } else if (request.contains("charcount")) {
+        } else if (request.equalsIgnoreCase("charcount")) {
             
             Map<String, String> queryPair = new LinkedHashMap<String, String>();
             
@@ -323,14 +323,13 @@ class WebServer {
                 builder.append("Example: bldstr?str1=hello&str2=world");
             }
             
-        } else if (request.contains("gradecheck")) {
+        } else if (request.equalsIgnoreCase("gradecheck")) {
             String variableName = null;
             try {
                 Map<String, String> queryPairs = new LinkedHashMap<String, String>();
                 queryPairs = splitQuery(request.replace("gradecheck?", ""));
     
                 // extract required fields from parameters
-                
                 try {
                     variableName = "grade1";
                     Float num1 = Float.parseFloat(queryPairs.get("grade1"));
