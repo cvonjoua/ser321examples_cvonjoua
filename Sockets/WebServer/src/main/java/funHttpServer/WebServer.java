@@ -214,7 +214,7 @@ class WebServer {
           Integer num2 = Integer.parseInt(query_pairs.get("num2"));
           
           // do math
-          Integer result = num1 * num2;
+          Integer result = (num1 * num2);
 
           // Generate response
           builder.append("HTTP/1.1 200 OK\n");
