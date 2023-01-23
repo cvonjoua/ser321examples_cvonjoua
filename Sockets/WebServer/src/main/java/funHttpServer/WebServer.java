@@ -222,12 +222,12 @@ class WebServer {
           builder.append("\n");
           builder.append("Result is: " + result);
           } catch (NumberFormatException e) {
-              builder.append("HTTP/1.1 422 Bad Request\n ");
+              builder.append("HTTP/1.1 422 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
           } catch (Exception e) {
-              builder.append("HTTP/1.1 500 OK\n ");
+              builder.append("HTTP/1.1 500 OK\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               builder.append("{\"Error\": \"Error, please try input again.\"}");
@@ -302,8 +302,8 @@ class WebServer {
                     }
                     
                     if (count == 0) {
-                        builder.append("HTTP/1.1 422 Bad Request\n");
-                        builder.append("Content-Type: text/html; charset=utf-8\n");
+                        builder.append("HTTP/1.1 400 Bad Request\n");
+                        builder.append("Content-type: text/html; charset=utf-8\n");
                         builder.append("\n");
                         builder.append("You have not entered any valid strings.  Please try again. ");
                     } else {
@@ -380,9 +380,10 @@ class WebServer {
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("Number Format Exception - Line 372 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
+                    //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
             } catch (NumberFormatException num3){
-                builder.append("HTTP/1.1 400 Bad Request\n");
+                builder.append("HTTP/1.1 422 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
                 builder.append("Number Format Exception - Line 389 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
