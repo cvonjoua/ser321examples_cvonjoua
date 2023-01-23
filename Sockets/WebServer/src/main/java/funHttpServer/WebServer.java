@@ -340,9 +340,9 @@ class WebServer {
                 // extract required fields from parameters
                 try {
                     variableName = "grade1";
-                    Float num1 = Float.parseFloat(queryPairs.get("grade1"));
+                    Float num1 = Float.parseFloat(queryPairs.get("grade1="));
                     variableName = "grade2";
-                    Float num2 = Float.parseFloat(queryPairs.get("grade2"));
+                    Float num2 = Float.parseFloat(queryPairs.get("grade2="));
     
                     // do math
                     Float numResult = (num1 + num2) / 2;
