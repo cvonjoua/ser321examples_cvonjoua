@@ -302,8 +302,8 @@ class WebServer {
                     }
                     
                     if (count == 0) {
-                        builder.append("HTTP/1.1 400 Bad Request\n");
-                        builder.append("Content-type: text/html; charset=utf-8\n");
+                        builder.append("HTTP/1.1 422 Bad Request\n");
+                        builder.append("Content-Type: text/html; charset=utf-8\n");
                         builder.append("\n");
                         builder.append("You have not entered any valid strings.  Please try again. ");
                     } else {
