@@ -376,7 +376,7 @@ class WebServer {
                     //builder.append();
                     
                 } catch (NumberFormatException e1) {
-                    builder.append("HTTP/1.1 200 Bad Request\n ");
+                    builder.append("HTTP/1.1 200 OK\n ");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("Number Format Exception - Line 372 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
