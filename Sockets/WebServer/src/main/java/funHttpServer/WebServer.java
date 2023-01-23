@@ -341,9 +341,9 @@ class WebServer {
             // extract required fields from parameters
             try {
                 variableName = "grade1";
-                Float num1 = Float.parseFloat(queryPairs.get("grade1="));
+                Float num1 = Float.parseFloat(queryPairs.get("grade1"));
                 variableName = "grade2";
-                Float num2 = Float.parseFloat(queryPairs.get("grade2="));
+                Float num2 = Float.parseFloat(queryPairs.get("grade2"));
 
                 // do math
                 Float numResult = (num1 + num2) / 2;
@@ -389,10 +389,10 @@ class WebServer {
                 builder.append("\n");
                 builder.append("Number Format Exception - Line 390 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
             } catch (Exception e) {
-            builder.append("HTTP/1.1 400 Bad Request\n");
-            builder.append("Content-Type: text/html; charset=utf-8\n");
-            builder.append("\n");
-            builder.append("Improper number of grades entered.  Please enter 2 grades.  EXAMPLE:  host:PORT/gradecheck?grade1=<...>&grade2=<...>");
+                builder.append("HTTP/1.1 400 Bad Request\n");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("Improper number of grades entered.  Please enter 2 grades.  EXAMPLE:  host:PORT/gradecheck?grade1=<...>&grade2=<...>");
             }
         } else {
           // if the request is not recognized at all
