@@ -352,7 +352,7 @@ class WebServer {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
-                        //iframe = String.format("" + "<iframe " + "width=%d height=%d " + "src="
+                        InputStream input = ClassLoader.getSystemResourceAsStream("LeonardoCongrats.gif");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
@@ -372,7 +372,8 @@ class WebServer {
                     builder.append("HTTP/1.1 200 OK\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n");
+                    builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
+                    //builder.append();
                     
                 } catch (NumberFormatException e1) {
                     builder.append("HTTP/1.1 422 Bad Request\n ");
