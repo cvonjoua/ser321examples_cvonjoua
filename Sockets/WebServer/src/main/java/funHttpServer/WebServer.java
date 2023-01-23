@@ -331,8 +331,9 @@ class WebServer {
             }
             
         } else if (request.contains("gradecheck")) { //contains is looking for that specific combination of characters.  
-            String variableName = null;
+            
             try {
+                String variableName = null;
                 Map<String, String> queryPairs = new LinkedHashMap<String, String>();
                 queryPairs = splitQuery(request.replace("gradecheck?", ""));
     
