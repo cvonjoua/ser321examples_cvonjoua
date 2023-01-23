@@ -10,9 +10,13 @@
 			<li>/random -- returns index.html</a></li>
 			<li>/multiply -- enter 2 integer variables num1 & num2, which will get multiplied and returned </a></li>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Example:  root/multiply?num1=10&num2=10
-			<li>/random -- returns index.html</a></li>
+			<li>/github -- when username specified, will supply list of all repositories and information for each repository</a></li>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Information provided:  repo full name; repo ID; and repo owner.  
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Example:  root/github?query=users/[USERNAME]/repos
 			<li>/charcount -- enter 2 strings str1 & str2, and total number of characters will be returned to you minus the white space</a></li>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Example: root/charcount?str1=Hello&str2=World - will return 10 characters. 
 			<li>/gradecheck -- enter the grades for 2 assignments num1 & num2 and it will give you your average grade and the letter grade associated</a></li>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Example: root/gradecheck?grade1=100&grade2=90 - Will return 95.0% which is an A. 
 		</ul>
 		<h3>File Structure in www (you can use /file/www/FILENAME):</h3>
 		${links}
