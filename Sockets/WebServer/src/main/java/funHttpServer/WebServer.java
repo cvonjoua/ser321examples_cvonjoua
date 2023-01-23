@@ -340,14 +340,16 @@ class WebServer {
                     // do math
                     Float numResult = (num1 + num2) / 2;
                     String grade = null;
+                    String iframe = null;
                     
                     if (numResult > 1000) {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
+                        //iframe = String.format("" + "<iframe " + "width=%d height=%d " + "src="
                     } else if (numResult > 89.9) {
                         grade = "A";
-                    } else if (80 <= numResult && numResult <= 90) {
+                    } else if (80 <= numResult && numResult < 90) {
                         grade = "B";
                     } else if (70 <= numResult && numResult < 80) {
                         grade = "C";
@@ -364,7 +366,8 @@ class WebServer {
                     builder.append("HTTP/1.1 200 OK\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("Your received a grade of " + numResult + "%, which is a " + grade + "\n");
+                    builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n");
+                    
                 } catch (NumberFormatException e1) {
                     builder.append("HTTP/1.1 422 Bad Request\n ");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
