@@ -382,6 +382,11 @@ class WebServer {
                     builder.append("Number Format Exception - Line 372 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
                     //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
+            } catch (NumberFormatException num3){
+                builder.append("HTTP/1.1 422 Bad Request\n ");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("Number Format Exception - Line 389 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?num1<...>&num2<...>");
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
