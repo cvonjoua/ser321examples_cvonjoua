@@ -251,8 +251,8 @@ class WebServer {
               String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
               System.out.println(json);
     
-              //builder.append("HTTP/1.1 200 OK\n");
-              //builder.append("Content-Type: text/html; charset=utf-8\n");
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
               //builder.append("Check the todos mentioned in the Java source file <br/>");
               // TODO: Parse the JSON returned by your fetch and create an appropriate
@@ -279,7 +279,7 @@ class WebServer {
           } catch (Exception e) {
               builder.append("HTTP/1.1 422 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
-              builder.append("\n");
+              builder.append("\n <br/>");
               builder.append("Improper query request.  Please review your query and try again. ");
           }
           
