@@ -347,7 +347,6 @@ class WebServer {
                     // do math
                     Float numResult = (num1 + num2) / 2;
                     String grade = null;
-                    String iframe = null;
                     URL url = null;
                     
                     if (numResult > 1000) {
@@ -375,7 +374,9 @@ class WebServer {
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
-                    builder.append("url" + url + "\n");
+                    
+                    String iframe = String.format("url", null)
+                    builder.append(iframe);
                     //builder.append();
                     
                 } catch (NumberFormatException e1) {
