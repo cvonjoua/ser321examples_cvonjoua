@@ -353,7 +353,7 @@ class WebServer {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
-                        url = new URL("LeonardoCongrats");
+                        url = new URL("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
