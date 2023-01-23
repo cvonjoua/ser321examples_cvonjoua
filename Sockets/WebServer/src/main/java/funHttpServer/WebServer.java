@@ -312,7 +312,7 @@ class WebServer {
                     builder.append("\n");
                     builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
                     builder.append("\n");
-                    builder.append("Example: bldstr?str1=hello&str2=world");
+                    builder.append("Example: /charcount?str1=hello&str2=world");
                 }
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
@@ -320,7 +320,7 @@ class WebServer {
                 builder.append("\n");
                 builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
                 builder.append("\n");
-                builder.append("Example: bldstr?str1=hello&str2=world");
+                builder.append("Example: /charcount?str1=hello&str2=world");
             }
             
         } else if (request.contains("gradecheck")) {
