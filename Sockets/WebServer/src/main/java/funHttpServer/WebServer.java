@@ -355,13 +355,11 @@ class WebServer {
                     // do math
                     Float numResult = (num1 + num2) / 2;
                     String grade = null;
-                    URL url = null;
                     
                     if (numResult > 1000) {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
-                        //url = this.getClass().getResource("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
@@ -382,10 +380,6 @@ class WebServer {
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
-                    
-                   // String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"LeonardoCongrats.gif\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
-                   // builder.append(iframe);
-                    //builder.append();
                     
                 } catch (NumberFormatException e1) {
                     builder.append("HTTP/1.1 422 Bad Request\n");
@@ -409,15 +403,6 @@ class WebServer {
             }
         } else {
           // if the request is not recognized at all
-
-         /* File file = new File(request.split("/")[2]);
-          if (file.exists()) {
-              builder.append("HTTP/1.1 200 OK\n");
-              builder.append("Content-Type: image/gif\n");
-              builder.append("\n");
-              builder.append(Files.readString(request.split("/")[2]));
-              return; 
-          }*/
           builder.append("HTTP/1.1 400 Bad Request\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
