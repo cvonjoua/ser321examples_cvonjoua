@@ -327,17 +327,15 @@ class WebServer {
                     builder.append("HTTP/1.1 400 Bad Request\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
-                    builder.append("\n");
-                    builder.append("Example: /charcount?str1=hello&str2=world");
+                    builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n<br/>");
+                    builder.append("Example: /charcount?str1=hello&str2=world\n");
                 }
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
-                builder.append("\n");
-                builder.append("Example: /charcount?str1=hello&str2=world");
+                builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n<br/>");
+                builder.append("Example: /charcount?str1=hello&str2=world\n");
             }
             
         } else if (request.contains("gradecheck")) { //contains is looking for that specific combination of characters.  
