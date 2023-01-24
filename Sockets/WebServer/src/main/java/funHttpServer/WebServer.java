@@ -353,7 +353,7 @@ class WebServer {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
-                        url = this.getClass().getResource("/img/LeonardoCongrats");
+                        //url = this.getClass().getResource("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
@@ -375,8 +375,8 @@ class WebServer {
                     builder.append("\n");
                     builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
                     
-                    String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"LeonardoCongrats.gif\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
-                    builder.append(iframe);
+                   // String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"LeonardoCongrats.gif\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
+                   // builder.append(iframe);
                     //builder.append();
                     
                 } catch (NumberFormatException e1) {
