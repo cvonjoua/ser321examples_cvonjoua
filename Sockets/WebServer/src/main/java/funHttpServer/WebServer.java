@@ -202,37 +202,45 @@ class WebServer {
           // This multiplies two numbers, there is NO error handling, so when
           // wrong data is given this just crashes
 
-          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-          // extract path parameters
-          query_pairs = splitQuery(request.replace("multiply?", ""));
-
-       
-          // extract required fields from parameters
-          String variableName = "num1";
-          try {
-          Integer num1 = Integer.parseInt(query_pairs.get("num1"));
-          variableName = "num2";
-          Integer num2 = Integer.parseInt(query_pairs.get("num2"));
-          
-          // do math
-          Integer result = (num1 * num2);
-
-          // Generate response
-          builder.append("HTTP/1.1 200 OK\n");
-          builder.append("Content-Type: text/html; charset=utf-8\n");
-          builder.append("\n");
-          builder.append("Result is: " + result);
-          } catch (NumberFormatException e) {
-              builder.append("HTTP/1.1 422 Bad Request\n");
+            try {
+              Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+              // extract path parameters
+              query_pairs = splitQuery(request.replace("multiply?", ""));
+    
+           
+              // extract required fields from parameters
+              String variableName = "num1";
+              try {
+              Integer num1 = Integer.parseInt(query_pairs.get("num1"));
+              variableName = "num2";
+              Integer num2 = Integer.parseInt(query_pairs.get("num2"));
+              
+              // do math
+              Integer result = (num1 * num2);
+    
+              // Generate response
+              builder.append("HTTP/1.1 200 OK\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n");
-              builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
-          } catch (Exception e) {
-              builder.append("HTTP/1.1 500 OK\n");
-              builder.append("Content-Type: text/html; charset=utf-8\n");
-              builder.append("\n");
-              builder.append("{\"Error\": \"Error, please try input again.\"}");
-          }
+              builder.append("Result is: " + result);
+              } catch (NumberFormatException e) {
+                  builder.append("HTTP/1.1 422 Bad Request\n");
+                  builder.append("Content-Type: text/html; charset=utf-8\n");
+                  builder.append("\n");
+                  builder.append("Error: Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\n");
+              } catch (Exception e) {
+                  builder.append("HTTP/1.1 500 OK\n");
+                  builder.append("Content-Type: text/html; charset=utf-8\n");
+                  builder.append("\n");
+                  builder.append("Error: please try input again.\n");
+              }
+            }catch (Exception e2) {
+                builder.append("HTTP/1.1 500 OK\n");
+                builder.append("Content-Type: text/html; charset=utf-8\n");
+                builder.append("\n");
+                builder.append("Improper parameter names.  Please verify your parameters and try again.\n<br/>");
+                builder.append("Example:  /multiply?num1=[num1]&num2=[num2]\n");
+            }
 
           // TODO: Include error handling here with a correct error code and
           // a response that makes sense
