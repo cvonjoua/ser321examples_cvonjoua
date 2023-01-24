@@ -353,7 +353,7 @@ class WebServer {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
-                        url = new URL("/img/LeonardoCongrats");
+                        url = this.getClass().getResource("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
@@ -400,12 +400,12 @@ class WebServer {
         } else {
           // if the request is not recognized at all
 
-          //File file = new File(request.split("/")[2]);
-          /*if (file.exists()) {
+         /* File file = new File(request.split("/")[2]);
+          if (file.exists()) {
               builder.append("HTTP/1.1 200 OK\n");
               builder.append("Content-Type: image/gif\n");
               builder.append("\n");
-              builder.append(Files.readString("/gradecheck"));
+              builder.append(Files.readString(request.split("/")[2]));
               return; 
           }*/
           builder.append("HTTP/1.1 400 Bad Request\n");
