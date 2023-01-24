@@ -390,12 +390,14 @@ class WebServer {
                 builder.append("HTTP/1.1 422 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Number Format Exception - Line 389 - Not enough inputs.  Please specify 2 inputs - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
+                builder.append("Illegal number of arguments.  Please specify 2 inputs\n<br/>");
+                builder.append("Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]\n");
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Improper number of grades entered.  Please enter 2 grades.  EXAMPLE:  host:PORT/gradecheck?grade1=[grade1]&grade2=[grade2]");
+                builder.append("Improper argument for checkgrade.  Please verify your command and try again.\n<br/>");
+                builder.append("EXAMPLE:  host:PORT/gradecheck?grade1=[grade1]&grade2=[grade2]\n");
             }
         } else {
           // if the request is not recognized at all
