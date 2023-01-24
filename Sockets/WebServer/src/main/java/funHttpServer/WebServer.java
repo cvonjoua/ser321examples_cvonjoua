@@ -289,8 +289,7 @@ class WebServer {
               builder.append("HTTP/1.1 422 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n <br/>");
-              builder.append("Improper query request.  Please review your query and try again.\n<br/>");
-              builder.append("Example:  /github?query=users/[USERNAME]/repos\n");
+              builder.append("Improper query request.  Please review your query and try again. ");
           }
           
         } else if (request.contains("charcount")) {
@@ -327,15 +326,17 @@ class WebServer {
                     builder.append("HTTP/1.1 400 Bad Request\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n<br/>");
-                    builder.append("Example: /charcount?str1=hello&str2=world\n");
+                    builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
+                    builder.append("\n");
+                    builder.append("Example: /charcount?str1=hello&str2=world");
                 }
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n<br/>");
-                builder.append("Example: /charcount?str1=hello&str2=world\n");
+                builder.append("Add requires two parameters and arguments, str1=[String] and str2=[String].\n");
+                builder.append("\n");
+                builder.append("Example: /charcount?str1=hello&str2=world");
             }
             
         } else if (request.contains("gradecheck")) { //contains is looking for that specific combination of characters.  
@@ -354,11 +355,13 @@ class WebServer {
                     // do math
                     Float numResult = (num1 + num2) / 2;
                     String grade = null;
+                    URL url = null;
                     
                     if (numResult > 1000) {
                       grade = "Really?  Now your just showing off....go watch some cartoons or something.";  
                     } else if(1000 <= numResult && numResult > 100) {
                         grade = "A+ - Congrats, your smart!";
+                        //url = this.getClass().getResource("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
                         grade = "A";
                     } else if (80 <= numResult && numResult < 90) {
@@ -379,6 +382,10 @@ class WebServer {
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
                     builder.append("You received a score of " + numResult + "%, which is a " + grade + "\n<br/>");
+                    
+                   // String iframe = String.format("<iframe " + "width=%d height=%d " + "src=\"LeonardoCongrats.gif\" " + "title=\"GIF\" " + "frameborder=\"0\">" + "</iframe>");
+                   // builder.append(iframe);
+                    //builder.append();
                     
                 } catch (NumberFormatException e1) {
                     builder.append("HTTP/1.1 422 Bad Request\n");
@@ -402,6 +409,21 @@ class WebServer {
             }
         } else {
           // if the request is not recognized at all
+
+          File file = new File(request.split("/")[2]);
+          if (file.exists()) {
+              BufferedReader reader = new BufferedReader(new FileReader(request.split("/")[2]));
+              builder.append("HTTP/1.1 200 OK\n");
+              builder.append("Content-Type: image/gif\n");
+              builder.append("\n");
+              String data = reader.readLine();
+              while (data != null) {
+                 builder.append(data);
+                 data = reader.readLine();
+              }
+              //builder.append(Files.readString(request.split("/")[2]));
+              return builder.toString().getBytes(); 
+          }
           builder.append("HTTP/1.1 400 Bad Request\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
