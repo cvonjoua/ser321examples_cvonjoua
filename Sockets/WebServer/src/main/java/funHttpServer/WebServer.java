@@ -383,7 +383,7 @@ class WebServer {
                     builder.append("HTTP/1.1 422 Bad Request\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("Illegal number of arguments.  Please specify 2 inputs\n<br/>");
+                    builder.append("Illegal number of arguments.  Please specify 2 numeric inputs\n<br/>");
                     builder.append("Example:  /gradecheck?grade1=98&grade2=85\n");
                 }
             } catch (NullPointerException n1){
