@@ -386,7 +386,7 @@ class WebServer {
                     builder.append("Illegal parameter entered.  Please enter 2 valid numbers.  - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
                     //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
                 }
-            } catch (NumberFormatException num3){
+            } catch (NullPointerException n1){
                 builder.append("HTTP/1.1 422 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
