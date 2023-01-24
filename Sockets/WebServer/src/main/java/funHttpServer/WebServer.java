@@ -383,14 +383,14 @@ class WebServer {
                     builder.append("HTTP/1.1 422 Bad Request\n");
                     builder.append("Content-Type: text/html; charset=utf-8\n");
                     builder.append("\n");
-                    builder.append("Illegal parameter entered.  Please enter 2 valid numbers.  - Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]");
-                    //builder.append("{\"Error\": \"Non number value detected.  Parameter: " + variableName + " is not a valid number.  Please correct input.\"}");
+                    builder.append("Illegal number of arguments.  Please specify 2 inputs\n<br/>");
+                    builder.append("Example:  /gradecheck?grade1=98&grade2=85\n");
                 }
             } catch (NullPointerException n1){
                 builder.append("HTTP/1.1 422 Bad Request\n");
                 builder.append("Content-Type: text/html; charset=utf-8\n");
                 builder.append("\n");
-                builder.append("Illegal number of arguments.  Please specify 2 inputs\n<br/>");
+                builder.append("Improper Parameters.  Please verify your parameter names and try again.\n<br/>");
                 builder.append("Example:  /gradecheck?grade1=[grade1]&grade2=[grade2]\n");
             } catch (Exception e) {
                 builder.append("HTTP/1.1 400 Bad Request\n");
