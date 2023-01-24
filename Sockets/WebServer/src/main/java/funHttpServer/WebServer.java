@@ -363,7 +363,7 @@ class WebServer {
                         grade = "A+ - Congrats, your smart!";
                         //url = this.getClass().getResource("/img/LeonardoCongrats");
                     } else if (numResult > 89.9) {
-                        grade = "A";
+                        grade = "A <img src='LeonardoCongrats.gif'>";
                     } else if (80 <= numResult && numResult < 90) {
                         grade = "B";
                     } else if (70 <= numResult && numResult < 80) {
@@ -423,7 +423,7 @@ class WebServer {
               }
               //builder.append(Files.readString(request.split("/")[2]));
               return builder.toString().getBytes(); 
-          }
+          } 
           builder.append("HTTP/1.1 400 Bad Request\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
