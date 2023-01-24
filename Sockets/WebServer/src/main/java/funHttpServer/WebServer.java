@@ -289,7 +289,8 @@ class WebServer {
               builder.append("HTTP/1.1 422 Bad Request\n");
               builder.append("Content-Type: text/html; charset=utf-8\n");
               builder.append("\n <br/>");
-              builder.append("Improper query request.  Please review your query and try again. ");
+              builder.append("Improper query request.  Please review your query and try again.\n<br/>");
+              builder.append("Example:  /github?query=users/[USERNAME]/repos\n");
           }
           
         } else if (request.contains("charcount")) {
