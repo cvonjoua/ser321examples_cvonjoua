@@ -56,7 +56,7 @@ public class Fraction {
                  argY = Integer.parseInt(args[1]);
              } catch (Exception e) {
                  System.out.println("Improper arguments, please ensure that arguments are of correct type.");
-                 System.exit(1);
+                 //System.exit(1);
              }
          } else {
              //System.out.println("Did not catch.");
